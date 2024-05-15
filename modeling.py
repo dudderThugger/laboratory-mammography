@@ -27,9 +27,9 @@ def preprocess(images, labels):
 
 
 # setup train, validation, and test folders
-traindir = '/mnt/d/datasets/EMBED/splited-croped/train'
-valdir = '/mnt/d/datasets/EMBED/splited-croped/validation'
-testdir = '/mnt/d/datasets/EMBED/splited-croped/test'
+traindir = '/mnt/d/datasets/INBREAST/split/train'
+valdir = '/mnt/d/datasets/INBREAST/split/validation'
+testdir = '/mnt/d/datasets/INBREAST/split/test'
 dirName = '2_classes'
 
 buffersize = 2
@@ -61,7 +61,7 @@ mirrored_strategy = tf.distribute.MirroredStrategy()
 
 with mirrored_strategy.scope():  # the entire model needs to be compiled within the scope of the distribution strategy
     # cb1 = EarlyStopping(monitor='val_accuracy', patience=4)  # define early stopping callback function
-    cb1 = ModelCheckpoint("/mnt/d/datasets/EMBED/splited-croped/results/resnet50.h5", monitor="val_accuracy", verbose=2, save_best_only=True, mode="max")
+    cb1 = ModelCheckpoint("/mnt/d/datasets/INBREAST/results/resnet50.h5", monitor="val_accuracy", verbose=2, save_best_only=True, mode="max")
     # cb2 = ReduceLROnPlateau(monitor='val_accuracy', factor=0.2, patience=2,
     #                         min_lr=0.00001)  # define LR reduction callback function
     opt = keras.optimizers.Adam(learning_rate=lr)
